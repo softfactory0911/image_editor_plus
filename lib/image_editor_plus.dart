@@ -1833,42 +1833,31 @@ class _EmojiImageEditorState extends State<EmojiImageEditor> {
           ),
         ),
         bottomNavigationBar: Container(
-          height: 86 + MediaQuery.of(context).padding.bottom,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          decoration: const BoxDecoration(
-            boxShadow: [
-              BoxShadow(blurRadius: 10),
-            ],
-          ),
-          child: SafeArea(
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                BottomButton(
-                  icon: FontAwesomeIcons.faceSmile,
-                  text: 'Emoji',
-                  onTap: () async {
-                    EmojiLayerData? layer = await showModalBottomSheet(
-                      context: context,
-                      backgroundColor: black,
-                      builder: (BuildContext context) {
-                        return const Emojies();
-                      },
-                    );
+            height: 86 + MediaQuery.of(context).padding.bottom,
+            // padding: const EdgeInsets.symmetric(vertical: 16),
 
-                    if (layer == null) return;
+            child: Expanded(
+              child: TextButton(
+                onPressed: () async {
+                  EmojiLayerData? layer = await showModalBottomSheet(
+                    context: context,
+                    backgroundColor: black,
+                    builder: (BuildContext context) {
+                      return const Emojies();
+                    },
+                  );
 
-                    undoLayers.clear();
-                    removedLayers.clear();
-                    layers.add(layer);
+                  if (layer == null) return;
 
-                    setState(() {});
-                  },
-                ),
-              ],
-            ),
-          ),
-        ),
+                  undoLayers.clear();
+                  removedLayers.clear();
+                  layers.add(layer);
+
+                  setState(() {});
+                },
+                child: Text("이모지 선택"),
+              ),
+            )),
       ),
     );
   }
