@@ -1835,6 +1835,7 @@ class _EmojiImageEditorState extends State<EmojiImageEditor> {
         bottomNavigationBar: Container(
           height: 86 + MediaQuery.of(context).padding.bottom,
           width: MediaQuery.of(context).size.width,
+          color: Colors.grey.withOpacity(0.5),
           child: TextButton(
             onPressed: () async {
               EmojiLayerData? layer = await showModalBottomSheet(
