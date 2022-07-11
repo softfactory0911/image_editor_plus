@@ -1833,31 +1833,29 @@ class _EmojiImageEditorState extends State<EmojiImageEditor> {
           ),
         ),
         bottomNavigationBar: Container(
-            height: 86 + MediaQuery.of(context).padding.bottom,
-            // padding: const EdgeInsets.symmetric(vertical: 16),
-
-            child: Expanded(
-              child: TextButton(
-                onPressed: () async {
-                  EmojiLayerData? layer = await showModalBottomSheet(
-                    context: context,
-                    backgroundColor: black,
-                    builder: (BuildContext context) {
-                      return const Emojies();
-                    },
-                  );
-
-                  if (layer == null) return;
-
-                  undoLayers.clear();
-                  removedLayers.clear();
-                  layers.add(layer);
-
-                  setState(() {});
+          height: 86 + MediaQuery.of(context).padding.bottom,
+          width: MediaQuery.of(context).size.width,
+          child: TextButton(
+            onPressed: () async {
+              EmojiLayerData? layer = await showModalBottomSheet(
+                context: context,
+                backgroundColor: black,
+                builder: (BuildContext context) {
+                  return const Emojies();
                 },
-                child: Text("이모지 선택"),
-              ),
-            )),
+              );
+
+              if (layer == null) return;
+
+              undoLayers.clear();
+              removedLayers.clear();
+              layers.add(layer);
+
+              setState(() {});
+            },
+            child: Text("이모지 선택"),
+          ),
+        ),
       ),
     );
   }
